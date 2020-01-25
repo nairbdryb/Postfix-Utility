@@ -12,6 +12,8 @@ public:
 	bool infixToPostfix();
 	string postfixToInfix(); // Emily's
 	string toString();
+	string infixToPostFix(); //mine
+	int GetHierarchy(string input); //also mine
 
 private:
 
