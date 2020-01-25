@@ -3,14 +3,17 @@
 
 using namespace std;
 
-int ExpressionManager::postfixEvaluation() {
+int ExpressionManager::postfixEvaluation(string postfixExpression) {
 	// add numbers to stack until I get an operator. 
 	// then pop off the top 2 elements then put the operator in the middle, 
 	//top is right bottom left
 }
 
-string ExpressionManager::postfixToInfix() {
+string ExpressionManager::postfixToInfix(string postfixExpression) {
 	stack<char> postfix;
+	while(postfixEspression)
+
+
 	//add numbers to the top of the stack until you get to an operator
 	// check to see if it's less than 2 if so INVALID
 	// top number is right number 
@@ -21,7 +24,7 @@ string ExpressionManager::postfixToInfix() {
 	//continue
 
 }
-string ExpressionManager::InfixToPostFix() {
+string ExpressionManager::infixToPostFix(string infixExpression) {
 	stack<char> infix;
 }
 int ExpressionManager::GetHierarchy(string input) {

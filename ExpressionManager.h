@@ -7,12 +7,12 @@ using namespace std;
 
 class ExpressionManager {
 public:
-	bool IsBalanced();
-	int postfixEvaluate(); // Emily's
-	bool infixToPostfix();
-	string postfixToInfix(); // Emily's
+	bool IsBalanced(string expression);
+	int postfixEvaluate(string postfixExpression); // Not yours
+	bool infixToPostfix(string infixExpression);
+	string postfixToInfix(string postfixExpression); //also not yours
 	string toString();
-	string infixToPostFix(); //mine
+	string infixToPostFix(string infixExpression); //mine
 	int GetHierarchy(string input); //also mine
 
 private:
