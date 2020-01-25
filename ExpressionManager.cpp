@@ -24,8 +24,17 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 	//continue
 
 }
-string ExpressionManager::infixToPostFix(string infixExpression) {
+
+string ExpressionManager::InfixToPostFix(string infixExpression) {
+
 	stack<char> infix;
+	/*
+	pop()//tells you element and removes it
+	top()//tells you top element
+	push()//adds element to the top
+	empty()//checks to see if it is empty
+	*/
+
 }
 int ExpressionManager::GetHierarchy(string input) {
 	if (input == ")" || input == "]" || input == "}") {
@@ -37,7 +46,7 @@ int ExpressionManager::GetHierarchy(string input) {
 	else if (input == "+" || input == "-") {
 		return 1;
 	}
-	else if (input == "(" || input == "[" || input == "{') {
+	else if (input == "(" || input == "[" || input == "{") {
 		return 0;
 	}
 	else {
