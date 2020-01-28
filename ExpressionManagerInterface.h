@@ -1,4 +1,6 @@
-#pragma once
+#ifndef EXPRESSION_MANAGER_INTERFACE
+#define EXPRESSION_MANAGER_INTERFACE
+
 #include <iostream>
 #include <string>
 #include <stack>
@@ -62,3 +64,8 @@ public:
 	virtual string infixToPostfix(string infixExpression) = 0;
 
 };
+
+
+#endif // !EXPRESSION_MANAGER_INTERFACE
+
+

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EXPRESSION_MANAGER
+
 #include <iostream>
 #include <string>
 #include "ExpressionManagerInterface.h"
@@ -7,7 +8,7 @@ using namespace std;
 
 class ExpressionManager {
 public:
-	bool IsBalanced(string expression);
+	bool isBalanced(string expression);
 	int postfixEvaluate(string postfixExpression); // Not yours
 	bool infixToPostfix(string infixExpression);
 	string postfixToInfix(string postfixExpression); //also not yours
@@ -18,3 +19,8 @@ public:
 private:
 
 };
+
+#define EXPRESSION_MANAGER
+#endif // !EXPRESSION_MANAGER
+
+

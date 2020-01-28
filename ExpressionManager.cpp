@@ -1,14 +1,15 @@
 #include "ExpressionManager.h"
 #include <string>
+#include <sstream>
 
 using namespace std;
 
-int ExpressionManager::postfixEvaluation(string postfixExpression) { // Not yours
+int ExpressionManager::postfixEvaluate(string postfixExpression) { // Not yours
 	// add numbers to stack until I get an operator. 
 	// then pop off the top 2 elements then put the operator in the middle, 
 	//top is right bottom left
 }
-
+/*
 string ExpressionManager::postfixToInfix(string postfixExpression) { //also not yours
 	stack<char> postfix; // can a stack of chars also hold strings?
 	for (int i = 0; postfixExpression.length(); ) { // continues until the entire string is done
@@ -31,8 +32,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) { //also not 
 			postfix.push(postfixExpression.at(i))
 		}
 	}
-
-
+	
 	//add numbers to the top of the stack until you get to an operator
 	// check to see if it's less than 2 if so INVALID
 	// top number is right number 
@@ -43,10 +43,18 @@ string ExpressionManager::postfixToInfix(string postfixExpression) { //also not 
 	//continue
 
 }
+*/
 
-string ExpressionManager::InfixToPostFix(string infixExpression) {
-
+string ExpressionManager::infixToPostFix(string infixExpression) {
+	//stringstream ss;
 	stack<char> infix;
+
+	//ss << infixExpression;
+	istringstream ss(infixExpression);
+	do {
+		//infix.push(ss);
+		//cout << infix.top();
+	} while (ss);
 	/*
 	pop()//tells you element and removes it
 	top()//tells you top element
