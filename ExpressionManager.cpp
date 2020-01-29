@@ -1,5 +1,5 @@
 //
-// Created by Ethan Low on 1/27/20.
+// Created by Team Byrd on 1/27/20. :P
 //
 
 #include "ExpressionManager.h"
@@ -61,7 +61,16 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
-	
+    vector<string> strings;
+    stack stack;
+
+   strings = parseTokens(infixExpression);
+   for (int i = 0; i < strings.size(); i++) {
+       stack.push(strings.at(i));
+   }
+
+
+
 	return "";
 }
 
