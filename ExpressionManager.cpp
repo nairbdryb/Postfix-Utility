@@ -42,9 +42,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
 
-
-
-    return std::string();
+    return "";
 }
 int ExpressionManager::GetHierarchy(string toCheck) {
     if (toCheck == ")" || toCheck == "]" || toCheck == "}") {

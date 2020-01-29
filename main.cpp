@@ -19,7 +19,6 @@ namespace ta {
     std::istream& getline(std::istream& is, std::string& line);
 }
 
-
 int main() {
 
     std::ifstream ifs; // create the stream to read in from the files
