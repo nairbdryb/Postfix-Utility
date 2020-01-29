@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stack>
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
