@@ -1,5 +1,5 @@
 //
-// Created by Ethan Low on 1/27/20.
+// Created by Team Byrd on 1/27/20. :P
 //
 
 #include "ExpressionManager.h"
@@ -82,6 +82,42 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
     
 
 
+
+    return std::string();
+}
+
+string ExpressionManager::infixToPostfix(string infixExpression) {
+    vector<string> strings;
+    stack stack;
+
+   strings = parseTokens(infixExpression);
+   for (int i = 0; i < strings.size(); i++) {
+       stack.push(strings.at(i));
+   }
+
+
+
+	return "";
+}
+
+int ExpressionManager::GetHierarchy(string toCheck) {
+    if (toCheck == ")" || toCheck == "]" || toCheck == "}") {
+        return 3;
+    }
+    else if (toCheck == "*" || toCheck = "/" || toCheck == "%") {
+        return 2;
+    }
+    else if (toCheck == "+" || toCheck == "-") {
+        return 1;
+    }
+    else if (toCheck == "(" || toCheck == "[" || toCheck == "{") {
+        return 0;;
+    }
+    else {
+        return -1;
+    }
+}
+
     return std::string();
 }
 
@@ -103,3 +139,4 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 
     return std::string();
 }
+
