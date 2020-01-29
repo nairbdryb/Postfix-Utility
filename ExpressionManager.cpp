@@ -46,3 +46,20 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 
     return std::string();
 }
+int ExpressionManager::GetHierarchy(string toCheck) {
+    if (toCheck == ")" || toCheck == "]" || toCheck == "}") {
+        return 3;
+    }
+    else if (toCheck == "*" || toCheck = "/" || toCheck == "%") {
+        return 2;
+    }
+    else if (toCheck == "+" || toCheck == "-") {
+        return 1;
+    }
+    else if (toCheck == "(" || toCheck == "[" || toCheck == "{") {
+        return 0;;
+    }
+    else {
+        return -1;
+    }
+}
