@@ -70,15 +70,14 @@ string ExpressionManager::postfixToInfix(string postfixExpression) { //also not 
 		return std::string();
 	}
 
-	string ExpressionManager::infixToPostfix(string infixExpression) {
-
-    return "";
-
-
-		return std::string();
-	}
     return std::string();
 }
+
+string ExpressionManager::infixToPostfix(string infixExpression) {
+	
+	return "";
+}
+
 int ExpressionManager::GetHierarchy(string toCheck) {
     if (toCheck == ")" || toCheck == "]" || toCheck == "}") {
         return 3;
