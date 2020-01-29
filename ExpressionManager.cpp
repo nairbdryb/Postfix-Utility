@@ -4,7 +4,11 @@
 
 using namespace std;
 
-int ExpressionManager::postfixEvaluate(string postfixExpression) { // Not yours
+ExpressionManager::ExpressionManager() {
+	//yayyyyyyyy we have no variables!
+}
+
+string ExpressionManager::postfixEvaluate(string postfixExpression) { // Not yours
 	// add numbers to stack until I get an operator. 
 	// then pop off the top 2 elements then put the operator in the middle, 
 	//top is right bottom left
@@ -46,6 +50,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) { //also not 
 */
 
 string ExpressionManager::infixToPostFix(string infixExpression) {
+	/*
 	//stringstream ss;
 	stack<char> infix;
 
@@ -61,7 +66,7 @@ string ExpressionManager::infixToPostFix(string infixExpression) {
 	push()//adds element to the top
 	empty()//checks to see if it is empty
 	*/
-
+	
 }
 int ExpressionManager::GetHierarchy(string input) {
 	if (input == ")" || input == "]" || input == "}") {

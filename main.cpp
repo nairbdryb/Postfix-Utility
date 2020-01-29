@@ -3,6 +3,7 @@
 #include <sstream>
 #include <stdexcept>
 #include "ExpressionManager.h"
+#include <stack>
 
 const int NUM_FILES = 5; // the total number of files to be read from
 
@@ -11,7 +12,7 @@ const std::string fileArray[NUM_FILES] = { "file1.txt", "file2.txt", "file3.txt"
 
 // This will take a string temp and an ExpressionManager object and will execute an instruction from the string
 // no return, but writes the results of the instruction into the ofs filestream
-void parse_instruction(std::string temp, std::ofstream& ofs, ExpressionManager* aptr);
+void parse_instruction(std::string temp, std::ofstream &ofs, ExpressionManager* aptr);
 
 // This function is a platform independent way of reading files of various line ending types.
 // It's definiton is at the bottom of the file, don't worry if you don't understand it.
@@ -56,7 +57,7 @@ int main() {
 	return 0;
 }
 
-void parse_instruction(std::string temp, std::ofstream& ofs, ExpressionManager* aptr) {
+void parse_instruction(std::string temp, std::ofstream &ofs, ExpressionManager* aptr) {
 	std::string command, expression;
 	std::stringstream ss(temp);
 
@@ -93,7 +94,7 @@ namespace ta {
 		line.clear();
 
 		std::istream::sentry guard(in, true); // Use a sentry to maintain the state of the stream
-		std::streambuf* buffer = in.rdbuf();  // Use the stream's internal buffer directly to read characters
+		std::streambuf *buffer = in.rdbuf();  // Use the stream's internal buffer directly to read characters
 		int c = 0;
 
 		while (true) { // Continue to loop until a line break if found (or end of file)

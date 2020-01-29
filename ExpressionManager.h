@@ -6,11 +6,13 @@
 
 using namespace std;
 
-class ExpressionManager {
+class ExpressionManager : public ExpressionManagerInterface {
 public:
+	ExpressionManager();
+	~ExpressionManager();
 	bool isBalanced(string expression);
-	int postfixEvaluate(string postfixExpression); // Not yours
-	bool infixToPostfix(string infixExpression);
+	string postfixEvaluate(string postfixExpression); // Not yours
+	//bool infixToPostfix(string infixExpression);
 	string postfixToInfix(string postfixExpression); //also not yours
 	string toString();
 	string infixToPostFix(string infixExpression); //mine
