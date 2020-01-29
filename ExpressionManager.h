@@ -53,6 +53,8 @@ public:
     */
     string infixToPostfix(string infixExpression);
 
+    vector<string> parseTokens(string expression);
+
 
 
 private:
