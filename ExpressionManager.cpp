@@ -51,11 +51,25 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 }
 
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
+    stack<int> myStack;
     vector<string> token;
     token = parseTokens(postfixExpression);
-    
-
-
+    for (int i = 0; i != token.size(); i++){
+        if (isdigit(postfixExpression[i]) == true){
+            stringstream transfer(token[i]);
+            int x;
+            transfer >> x;
+            myStack.push(x);
+            cout << x << " ";
+        } else {
+            int y = myStack.top();
+            int z = 0;
+            myStack.pop();
+            z = myStack.top() + y;
+            myStack.pop();
+            cout << z << endl;
+        }
+    }
 
     return std::string();
 }
