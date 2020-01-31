@@ -4,7 +4,7 @@
 #include <vector>
 #include <sstream>
 #include <string>
-int GetHierarchy(string toCheck);
+//int GetHierarchy(string toCheck);
 
 using namespace std;
 
@@ -68,8 +68,9 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 
 			return std::string();
 		}
-		else if(isdigit(tokens.at(i))){
+		else if (isdigit(tokens.at(i))) {
 			postfix.push(tokens.at(i));
+		}
 	}
 }
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
@@ -98,68 +99,68 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
 	vector<string> strings;
-    stringstream ss;
+	stringstream ss;
 	stack<string> theStack;
 	string postfix = "";
-    //ExpressionManager manager;
+	//ExpressionManager manager;
 
 	strings = parseTokens(infixExpression);
 	/*for (int i = 0; i < strings.size(); i++) {
 		theStack.push(strings.at(i));
 	}*/
 	while (strings.size() > 0) {
-        ss << strings.at(0);
-		if (isdigit(ss)) {
+		ss << strings.at(0);
+		if (isdigit(strings.at(0)[0])) {
 			postfix = postfix + strings.at(0) + " ";
 			strings.erase(strings.begin());
 		}
-        while (GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
-            postfix = postfix + theStack.top() + " ";
-            theStack.pop();
-        }
-		if(/* is NOT digit*/) { /*fixlater*/
+		while (GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
+			postfix = postfix + theStack.top() + " ";
+			theStack.pop();
+		}
+		if (1 == 1/* is NOT digit*/) { /*fixlater*/
 			if (GetHierarchy(strings.at(0)) == 1) {
 				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0) {
 					theStack.push(strings.at(0));
-                    strings.erase(strings.begin());
+					strings.erase(strings.begin());
 				}
 				else {
 					postfix = postfix + strings.at(0) + " ";
 					strings.erase(strings.begin());
 				}
 			}
-			else if (GetHierarchy(strings.at(0) == 2) {
+			else if (GetHierarchy(strings.at(0)) == 2) {
 				if (GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1 || theStack.size() == 0) {
 					theStack.push(strings.at(0));
 						strings.erase(strings.begin());
 				}
 				else {
 					postfix = postfix + strings.at(0) + " ";
-					strings.erase(strings.begin());
+						strings.erase(strings.begin());
 				}
 			}
 			else if (GetHierarchy(theStack.at(0) == 3)) {
-                if (strings.at(0) == ")") {
-                    while (theStack.top() != "(") {
-                        postfix = postfix + theStack.top() + "";
-                        theStack.pop();
-                    }
-                    theStack.pop();
-                }
-                else if (strings.at(0) == "]") {
-                    while (theStack.top() != "[") {
-                        postfix = postfix + theStack.top() + "";
-                        theStack.pop();
-                    }
-                    theStack.pop();
-                }
-                else { //(strings.at(0) == "}")
-                    while (theStack.top() != "{") {
-                        postfix = postfix + theStack.top() + "";
-                        theStack.pop();
-                    }
-                    theStack.pop();
-                }
+				if (strings.at(0) == ")") {
+					while (theStack.top() != "(") {
+						postfix = postfix + theStack.top() + "";
+						theStack.pop();
+					}
+					theStack.pop();
+				}
+				else if (strings.at(0) == "]") {
+					while (theStack.top() != "[") {
+						postfix = postfix + theStack.top() + "";
+						theStack.pop();
+					}
+					theStack.pop();
+				}
+				else { //(strings.at(0) == "}")
+					while (theStack.top() != "{") {
+						postfix = postfix + theStack.top() + "";
+						theStack.pop();
+					}
+					theStack.pop();
+				}
 			}
 			else {
 				theStack.push(strings.at(0));
@@ -167,8 +168,6 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			}
 		}
 	}
-
-
 	return "";
 }
 
@@ -188,7 +187,6 @@ int ExpressionManager::GetHierarchy(string toCheck) {
     else {
         return -1;
     }
-}
     return string();
 }
 
