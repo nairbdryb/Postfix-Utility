@@ -48,10 +48,9 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 	string tempString;
 	string tempNum;
 	string tempOperator;
-	stack<string> postfix; // can a stack of chars also hold strings?
+	stack<string> postfix; 
 
 	for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
-
 		if (tokens.at(i) == "+" || tokens.at(i) == "-"
 			|| tokens.at(i) == "*" || tokens.at(i) == "/") { /* if the char is an operand it is added to the top of the stack*/
 			if (postfix.size() < 2) {
@@ -65,7 +64,6 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 				postfix.pop();
 				postfix.push(tempString);
 			}
-
 		}
 		else if (isdigit(tokens.at(i)[0])) {
 			postfix.push(tokens.at(i));
@@ -73,11 +71,10 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 	}
 	if (postfix.size() > 1) {
 		return "Error too many arguments";
-
 	}
-
 	return postfix.top();
 }
+
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
     stack<int> myStack;
     vector<string> token;
@@ -91,7 +88,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             stringstream transfer(token[i]);
             transfer >> x;
             myStack.push(x);
-            cout << x << " ";
+            //cout << x << " ";
         } else {
             y = myStack.top();
             z = 0;
@@ -112,12 +109,8 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 	stringstream ss;
 	stack<string> theStack;
 	string postfix = "";
-	//ExpressionManager manager;
 
 	strings = parseTokens(infixExpression);
-	/*for (int i = 0; i < strings.size(); i++) {
-		theStack.push(strings.at(i));
-	}*/
 	while (strings.size() > 0) {
 		ss << strings.at(0);
 		if (isdigit(strings.at(0)[0])) {
