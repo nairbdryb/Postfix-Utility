@@ -99,7 +99,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
         }
     }
 
-    return z;
+    return static_cast<string> (z);
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
