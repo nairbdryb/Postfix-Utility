@@ -68,8 +68,12 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 
 			return std::string();
 		}
-		else if(isdigit(tokens.at(i))){
+		else if (isdigit(tokens.at(i)[0])) {
 			postfix.push(tokens.at(i));
+		}
+	}
+	if (postfix.size() > 1) {
+		cout << "Error too many arguments" << endl;
 	}
 }
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
