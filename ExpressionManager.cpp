@@ -1,12 +1,12 @@
-
-
 #include "ExpressionManager.h"
 #include <stack>
 #include <iostream>
 #include <vector>
 #include <sstream>
 #include <string>
+int GetHierarchy(string toCheck);
 
+using namespace std;
 
 vector<string> ExpressionManager::parseTokens(string expression) {
     stringstream ss(expression);
@@ -106,26 +106,27 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 		theStack.push(strings.at(i));
 	}*/
 	while (strings.size() > 0) {
-		if (isdigit(strings.at(0))) {
+        ss << strings.at(0);
+		if (isdigit(ss)) {
 			postfix = postfix + strings.at(0) + " ";
 			strings.erase(strings.begin());
 		}
-        while (GetHierarchy(strings.at(0) <= GetHierarchy(theStack.top()))) {
+        while (GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
             postfix = postfix + theStack.top() + " ";
             theStack.pop();
         }
-		else {
-			if (GetHierarchy(theStack.at(0) == 1)) {
-				if (theStack.size() == 0 || GetHierarchy(theStack.top() == 0)) {
+		if(/* is NOT digit*/) { /*fixlater*/
+			if (GetHierarchy(strings.at(0)) == 1) {
+				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0) {
 					theStack.push(strings.at(0));
-					strings.erase(strings.begin())
+                    strings.erase(strings.begin());
 				}
 				else {
 					postfix = postfix + strings.at(0) + " ";
 					strings.erase(strings.begin());
 				}
 			}
-			else if (GetHierarchy(theStack.at(0) == 2) {
+			else if (GetHierarchy(strings.at(0) == 2) {
 				if (GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1 || theStack.size() == 0) {
 					theStack.push(strings.at(0));
 						strings.erase(strings.begin());
@@ -186,11 +187,10 @@ int ExpressionManager::GetHierarchy(string toCheck) {
         return -1;
     }
 }
-
-    return std::string();
+    return string();
 }
 
-string ExpressionManager::infixToPostfix(string infixExpression) {
+/*string ExpressionManager::infixToPostfix(string infixExpression) {
     /*stack<char> myStack;
     //cin >> (myChar, expression);
     for (int i = 0; i < infixExpression.length(); i++) {
@@ -203,9 +203,9 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
             myStack.push(infixExpression[i]);
         }
         cout << myStack.top() << " ";
-*/
+
 
 
     return std::string();
-}
+}*/
 
