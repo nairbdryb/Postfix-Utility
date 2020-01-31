@@ -88,14 +88,14 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             int x;
             transfer >> x;
             myStack.push(x);
-            cout << x << " ";
+            //cout << x << " ";
         } else {
             int y = myStack.top();
             int z = 0;
             myStack.pop();
             z = myStack.top() + y;
             myStack.pop();
-            cout << z << endl;
+            //cout << z << endl;
         }
     }
     return static_cast<string> (z);
