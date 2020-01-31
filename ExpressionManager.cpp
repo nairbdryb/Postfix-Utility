@@ -66,16 +66,17 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 				postfix.push(tempString);
 			}
 
-			return std::string();
 		}
 		else if (isdigit(tokens.at(i)[0])) {
 			postfix.push(tokens.at(i));
 		}
 	}
 	if (postfix.size() > 1) {
-		cout << "Error too many arguments" << endl;
+		return "Error too many arguments";
 
 	}
+
+	return postfix.top();
 }
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
     stack<int> myStack;
@@ -98,7 +99,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
         }
     }
 
-    return std::string();
+    return z;
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
