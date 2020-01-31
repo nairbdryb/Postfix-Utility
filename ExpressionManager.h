@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <vector>
 #include "ExpressionManagerInterface.h"
 
 using namespace std;

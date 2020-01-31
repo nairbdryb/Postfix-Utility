@@ -1,15 +1,14 @@
-//
-// Created by Team Byrd on 1/27/20. :P
-//
+
 
 #include "ExpressionManager.h"
 #include <stack>
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <string>
 
-vector<string> ExpressionManager::parseTokens(string expression)
-{
+
+vector<string> ExpressionManager::parseTokens(string expression) {
     stringstream ss(expression);
     string token;
     vector<string> tokens;
@@ -19,7 +18,6 @@ vector<string> ExpressionManager::parseTokens(string expression)
     }
     return tokens;
 }
-
 bool ExpressionManager::isBalanced(string expression) {
     stack<char> myStack;
     //cin >> (myChar, expression);
@@ -45,18 +43,17 @@ bool ExpressionManager::isBalanced(string expression) {
         return true;
     } else return false;
 }
-
 string ExpressionManager::postfixToInfix(string postfixExpression) {
-	vector<std::strings> tokens = parseTokens(postfixExpression);
-	std::string tempString;
-	std::string tempNum;
-	std::string tempOperator;
+	vector<string> tokens = parseTokens(postfixExpression);
+	string tempString;
+	string tempNum;
+	string tempOperator;
 
 	stack<char> postfix; // can a stack of chars also hold strings?
 	for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
-		
+
 		if (tokens.at(i) == "+" || tokens.at(i) == "-"
-			|| tokens.at(i) == "*" || tokens.at(i) == "/") { // if the char is an operand it is added to the top of the stack
+			|| tokens.at(i) == "*" || tokens.at(i) == "/") { /* if the char is an operand it is added to the top of the stack*/
 			if (postfix.size() < 2) {
 				cout << "Invalid Expression" << endl;
 			}
@@ -67,15 +64,12 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 				tempString = "(" + postfix.top() + tempOperator + tempNum + ")";
 				postfix.pop();
 				postfix.push(tempString);
+			}
 
-
-
+			return std::string();
 		}
-
-
-    return std::string();
+	}
 }
-
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
     stack<int> myStack;
     vector<string> token;
@@ -101,14 +95,75 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
-    vector<string> strings;
-    stack stack;
+	vector<string> strings;
+    stringstream ss;
+	stack<string> theStack;
+	string postfix = "";
+    //ExpressionManager manager;
 
-   strings = parseTokens(infixExpression);
-   for (int i = 0; i < strings.size(); i++) {
-       stack.push(strings.at(i));
-   }
-
+	strings = parseTokens(infixExpression);
+	/*for (int i = 0; i < strings.size(); i++) {
+		theStack.push(strings.at(i));
+	}*/
+	while (strings.size() > 0) {
+		if (isdigit(strings.at(0))) {
+			postfix = postfix + strings.at(0) + " ";
+			strings.erase(strings.begin());
+		}
+        while (GetHierarchy(strings.at(0) <= GetHierarchy(theStack.top()))) {
+            postfix = postfix + theStack.top() + " ";
+            theStack.pop();
+        }
+		else {
+			if (GetHierarchy(theStack.at(0) == 1)) {
+				if (theStack.size() == 0 || GetHierarchy(theStack.top() == 0)) {
+					theStack.push(strings.at(0));
+					strings.erase(strings.begin())
+				}
+				else {
+					postfix = postfix + strings.at(0) + " ";
+					strings.erase(strings.begin());
+				}
+			}
+			else if (GetHierarchy(theStack.at(0) == 2) {
+				if (GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1 || theStack.size() == 0) {
+					theStack.push(strings.at(0));
+						strings.erase(strings.begin());
+				}
+				else {
+					postfix = postfix + strings.at(0) + " ";
+					strings.erase(strings.begin());
+				}
+			}
+			else if (GetHierarchy(theStack.at(0) == 3)) {
+                if (strings.at(0) == ")") {
+                    while (theStack.top() != "(") {
+                        postfix = postfix + theStack.top() + "";
+                        theStack.pop();
+                    }
+                    theStack.pop();
+                }
+                else if (strings.at(0) == "]") {
+                    while (theStack.top() != "[") {
+                        postfix = postfix + theStack.top() + "";
+                        theStack.pop();
+                    }
+                    theStack.pop();
+                }
+                else { //(strings.at(0) == "}")
+                    while (theStack.top() != "{") {
+                        postfix = postfix + theStack.top() + "";
+                        theStack.pop();
+                    }
+                    theStack.pop();
+                }
+			}
+			else {
+				theStack.push(strings.at(0));
+				strings.erase(strings.begin());
+			}
+		}
+	}
 
 
 	return "";
@@ -147,7 +202,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
         if (isdigit(infixExpression[i] == false)) {
             myStack.push(infixExpression[i]);
         }
-        //cout << myStack.top() << " ";
+        cout << myStack.top() << " ";
 */
 
 
