@@ -98,8 +98,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             cout << z << endl;
         }
     }
-
-    return "z";////////////////////fixlater
+    return static_cast<string> (z);
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
