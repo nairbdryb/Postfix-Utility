@@ -81,6 +81,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
     stack<int> myStack;
     vector<string> token;
+	stringstream zz;
 	int z;
 	int y;
 	int x;
@@ -100,7 +101,10 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             //cout << z << endl;
         }
     }
-    return static_cast<string> (z);
+	zz << z;
+	string str;
+	zz >> str;
+    return str;
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
