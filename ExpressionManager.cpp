@@ -52,7 +52,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 
 	for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
 		if (tokens.at(i) == "+" || tokens.at(i) == "-"
-			|| tokens.at(i) == "*" || tokens.at(i) == "/") { /* if the char is an operand it is added to the top of the stack*/
+			|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") { /* if the char is an operand it is added to the top of the stack*/
 			if (postfix.size() < 2) {
 				cout << "Invalid Expression" << endl;
 			}
@@ -88,12 +88,24 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             stringstream transfer(token[i]);
             transfer >> x;
             myStack.push(x);
-            //cout << x << " ";
         } else {
             y = myStack.top();
-            z = 0;
             myStack.pop();
-            z = myStack.top() + y;
+			if (token.at(i) == "+") {
+				myStack.push( z + y);
+			}
+			else if (token.at(i) == "-") {
+				myStack.push(z - y);
+			}
+			else if (token.at(i) == "*") {
+				myStack.push(z * y);
+			}
+			else if (token.at(i) == "/") {
+				myStack.push(z / y);
+			}
+			else if (token.at(i) == "%") {
+				myStack.push(z % y);
+			}
             myStack.pop();
             //cout << z << endl;
         }
