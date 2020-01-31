@@ -112,7 +112,6 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 				myStack.push(z % y);
 				myStack.pop();
 			}
-            
             //cout << z << endl;
         }
     }
