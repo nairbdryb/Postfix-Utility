@@ -95,22 +95,28 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
         } else {
             y = myStack.top();
             myStack.pop();
+			z = myStack.top();
 			if (token.at(i) == "+") {
 				myStack.push( z + y);
+				myStack.pop();
 			}
 			else if (token.at(i) == "-") {
 				myStack.push(z - y);
+				myStack.pop();
 			}
 			else if (token.at(i) == "*") {
 				myStack.push(z * y);
+				myStack.pop();
 			}
 			else if (token.at(i) == "/") {
 				myStack.push(z / y);
+				myStack.pop();
 			}
 			else if (token.at(i) == "%") {
 				myStack.push(z % y);
+				myStack.pop();
 			}
-            myStack.pop();
+            
             //cout << z << endl;
         }
     }
