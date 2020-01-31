@@ -75,7 +75,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 	return postfix.top();
 }
 
-string ExpressionManager::postfixEvaluate(string postfixExpression) {
+string ExpressionManager::postfixEvaluate(string postfixExpression) {/*
     stack<int> myStack;
     vector<string> token;
 	stringstream zz;
@@ -119,7 +119,8 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 	zz << z;
 	string str;
 	zz >> str;
-    return str;
+    return str;*/
+	return "";//////////////remove later
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
