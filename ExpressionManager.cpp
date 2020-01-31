@@ -48,8 +48,8 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 	string tempString;
 	string tempNum;
 	string tempOperator;
+	stack<string> postfix; // can a stack of chars also hold strings?
 
-	stack<char> postfix; // can a stack of chars also hold strings?
 	for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
 
 		if (tokens.at(i) == "+" || tokens.at(i) == "-"
@@ -68,6 +68,8 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 
 			return std::string();
 		}
+		else if(isdigit(tokens.at(i))){
+			postfix.push(tokens.at(i));
 	}
 }
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
