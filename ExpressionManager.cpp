@@ -143,7 +143,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 						strings.erase(strings.begin());
 				}
 			}
-			else if (GetHierarchy(theStack.at(0) == 3)) {
+			else if (GetHierarchy(strings.at(0)) == 3) {
 				if (strings.at(0) == ")") {
 					while (theStack.top() != "(") {
 						postfix = postfix + theStack.top() + "";
@@ -179,7 +179,7 @@ int ExpressionManager::GetHierarchy(string toCheck) {
     if (toCheck == ")" || toCheck == "]" || toCheck == "}") {
         return 3;
     }
-    else if (toCheck == "*" || toCheck = "/" || toCheck == "%") {
+    else if (toCheck == "*" || toCheck == "/" || toCheck == "%") {
         return 2;
     }
     else if (toCheck == "+" || toCheck == "-") {
@@ -191,7 +191,7 @@ int ExpressionManager::GetHierarchy(string toCheck) {
     else {
         return -1;
     }
-    return string();
+    return -99;
 }
 
 /*string ExpressionManager::infixToPostfix(string infixExpression) {
