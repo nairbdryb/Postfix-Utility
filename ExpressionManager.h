@@ -56,7 +56,7 @@ public:
 
     vector<string> parseTokens(string expression);
 
-    string GetHierarchy(string toCheck);
+    int GetHierarchy(string toCheck);
 private:
   //  stack<char> myStack();
 
