@@ -122,7 +122,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			postfix = postfix + theStack.top() + " ";
 			theStack.pop();
 		}
-		if (1 == 1/* is NOT digit*/) { /*fixlater*/
+		if (isdigit(strings.at(0)[0]) != true) { 
 			if (GetHierarchy(strings.at(0)) == 1) {
 				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0) {
 					theStack.push(strings.at(0));
@@ -172,7 +172,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			}
 		}
 	}
-	return "";
+	return postfix;
 }
 
 int ExpressionManager::GetHierarchy(string toCheck) {
