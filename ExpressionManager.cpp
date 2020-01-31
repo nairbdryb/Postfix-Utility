@@ -90,7 +90,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             stringstream transfer(token[i]);
             transfer >> x;
             myStack.push(x);
-            //cout << x << " ";
+            cout << x << " ";
         } else {
             y = myStack.top();
             z = 0;
@@ -100,6 +100,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             //cout << z << endl;
         }
     }
+
     return static_cast<string> (z);
 }
 
