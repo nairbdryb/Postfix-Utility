@@ -90,17 +90,16 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             stringstream transfer(token[i]);
             transfer >> x;
             myStack.push(x);
-            cout << x << " ";
+            //cout << x << " ";
         } else {
             y = myStack.top();
             z = 0;
             myStack.pop();
             z = myStack.top() + y;
             myStack.pop();
-            cout << z << endl;
+            //cout << z << endl;
         }
     }
-
     return static_cast<string> (z);
 }
 
