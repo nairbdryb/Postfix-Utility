@@ -134,14 +134,15 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 	string postfix = "";
 
 	strings = parseTokens(infixExpression);
-	while (strings.size() > 0) {
+	while (strings.size() >= 0) {
+		cout << "run" << endl;
 		ss << strings.at(0);
 		if (isdigit(strings.at(0)[0])) {
 			postfix = postfix + strings.at(0) + " ";
 			strings.erase(strings.begin());
 		}
-		else if (theStack.size() > 0) {
-			while (GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
+		else if (theStack.size() > 0 && isdigit(strings.at(0)[0] == true)) {
+			while (theStack.size() > 0 && GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
 				postfix = postfix + theStack.top() + " ";
 				theStack.pop();
 			}
@@ -191,7 +192,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 				}
 			}
 			else {
-				if (theStack.size() > 0) {
+				if (/*theStack.size() > 0*/ true) {//changed to true due to infinite loop
 					theStack.push(strings.at(0));
 					strings.erase(strings.begin());
 				}
