@@ -84,7 +84,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 	int x;
     token = parseTokens(postfixExpression);
     for (int i = 0; i != token.size(); i++){
-        if (isdigit(postfixExpression[i]) == true){
+        if (isdigit(token.at(i)[0]) == true){
             stringstream transfer(token[i]);
             transfer >> x;
             myStack.push(x);
