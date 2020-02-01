@@ -119,9 +119,9 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 				myStack.pop();
 			}
 
-			//cout << z << endl;
-		}
-	}
+            //cout << z << endl;
+        }
+    }
 	zz << z;
 	string str;
 	zz >> str;
