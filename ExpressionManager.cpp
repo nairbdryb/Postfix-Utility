@@ -140,13 +140,13 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			postfix = postfix + strings.at(0) + " ";
 			strings.erase(strings.begin());
 		}
-		if (theStack.size() > 0) {
+		else if (theStack.size() > 0) {
 			while (GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
 				postfix = postfix + theStack.top() + " ";
 				theStack.pop();
 			}
 		}
-		if (isdigit(strings.at(0)[0]) != true) { 
+		else if (isdigit(strings.at(0)[0]) != true) { 
 			if (GetHierarchy(strings.at(0)) == 1) {
 				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0) {
 					theStack.push(strings.at(0));
@@ -196,6 +196,9 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 					strings.erase(strings.begin());
 				}
 			}
+		}
+		else {
+			cout << "infixtopostfix error" << endl;
 		}
 	}
 	return postfix;
