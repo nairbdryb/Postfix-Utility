@@ -89,9 +89,11 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             transfer >> x;
             myStack.push(x);
         } else {
-            y = myStack.top();
-            myStack.pop();
-			z = myStack.top();
+			if (myStack.size() != 0) {
+				y = myStack.top();
+				myStack.pop();
+				z = myStack.top();
+			}
 			if (token.at(i) == "+") {
 				myStack.push( z + y);
 				myStack.pop();
