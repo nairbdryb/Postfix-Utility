@@ -132,6 +132,8 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 	stringstream ss;
 	stack<string> theStack;
 	string postfix = "";
+	int tempA = NULL;
+	int tempB = NULL;
 
 	strings = parseTokens(infixExpression);
 	while (strings.size() >= 0) {
@@ -149,6 +151,19 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 		}
 		else if (isdigit(strings.at(0)[0]) != true) { 
 			if (GetHierarchy(strings.at(0)) == 1) {
+				if (theStack.size() > 0) {
+					while (theStack.size() > 0 && GetHierarchy(theStack.top()) >= GetHierarchy(strings.at(0))) {
+						postfix = postfix + theStack.top() + " ";
+						theStack.pop();
+					}
+					theStack.push(strings.at(0));
+					strings.erase(strings.begin());
+				}
+				else {
+					theStack.push(strings.at(0));
+					strings.erase(strings.begin());
+				}
+				/*
 				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0) {
 					theStack.push(strings.at(0));
 					strings.erase(strings.begin());
@@ -156,7 +171,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 				else {
 					postfix = postfix + strings.at(0) + " ";
 					strings.erase(strings.begin());
-				}
+				}*/
 			}
 			else if (GetHierarchy(strings.at(0)) == 2) {
 				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1) {
