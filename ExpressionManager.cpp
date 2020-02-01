@@ -9,91 +9,97 @@
 using namespace std;
 
 vector<string> ExpressionManager::parseTokens(string expression) {
-    stringstream ss(expression);
-    string token;
-    vector<string> tokens;
-    while(getline(ss, token, ' '))
-    {
-        tokens.push_back(token);
-    }
-    return tokens;
+	stringstream ss(expression);
+	string token;
+	vector<string> tokens;
+	while (getline(ss, token, ' '))
+	{
+		tokens.push_back(token);
+	}
+	return tokens;
 }
 bool ExpressionManager::isBalanced(string expression) {
-    stack<char> myStack;
-    //cin >> (myChar, expression);
-    for (int i = 0; i < expression.length(); i++) {
-        if (expression[i] == '(' || expression[i] == '{' || expression[i] == '[') {
-            myStack.push(expression[i]);
-        }
-        else if (expression[i] == ')' || expression[i] == '}' || expression[i] == ']'){
-            if (myStack.empty()){
-                return false;
-            }
-            if (expression[i] == ')' && myStack.top() == '('){
-                myStack.pop();
-            } else if (expression[i] == '}' && myStack.top() == '{') {
-                myStack.pop();
-            } else if (expression[i] == ']' && myStack.top() == '['){
-                myStack.pop();
-            } else return false;
-        } //else return false;
+	stack<char> myStack;
+	//cin >> (myChar, expression);
+	for (int i = 0; i < expression.length(); i++) {
+		if (expression[i] == '(' || expression[i] == '{' || expression[i] == '[') {
+			myStack.push(expression[i]);
+		}
+		else if (expression[i] == ')' || expression[i] == '}' || expression[i] == ']') {
+			if (myStack.empty()) {
+				return false;
+			}
+			if (expression[i] == ')' && myStack.top() == '(') {
+				myStack.pop();
+			}
+			else if (expression[i] == '}' && myStack.top() == '{') {
+				myStack.pop();
+			}
+			else if (expression[i] == ']' && myStack.top() == '[') {
+				myStack.pop();
+			}
+			else return false;
+		} //else return false;
 
-    }
-    if (myStack.empty()){
-        return true;
-    } else return false;
+	}
+	if (myStack.empty()) {
+		return true;
+	}
+	else return false;
 }
 string ExpressionManager::postfixToInfix(string postfixExpression) {
 	vector<string> tokens = parseTokens(postfixExpression);
 	string tempString;
 	string tempNum;
 	string tempOperator;
-	stack<string> postfix; 
+	stack<string> postfix;
 
 	for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
-		if (tokens.at(i) == "+" || tokens.at(i) == "-"
-			|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") { /* if the char is an operand it is added to the top of the stack*/
-			if (postfix.size() < 2) {
-				cout << "Invalid Expression" << endl;
-			}
-			else {
-				tempOperator = tokens.at(i);
-				tempNum = postfix.top();
-				postfix.pop();
-				tempString = "(" + postfix.top() + tempOperator + tempNum + ")";
-				postfix.pop();
-				postfix.push(tempString);
-			}
-		}
-		else if (isdigit(tokens.at(i)[0])) {
+		if (isdigit(tokens.at(i)[0])) {
 			postfix.push(tokens.at(i));
 		}
+		else if (tokens.at(i) == "+" || tokens.at(i) == "-"
+			|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") { /* if the char is an operand it is added to the top of the stack*/
+				if (postfix.size() < 2) {
+					cout << "Invalid" << endl;
+				}
+				else {
+					tempOperator = tokens.at(i);
+					tempNum = postfix.top();
+					postfix.pop();
+					tempString = "(" + postfix.top() + tempOperator + tempNum + ")";
+					postfix.pop();
+					postfix.push(tempString);
+				}
+		}
+
 	}
-	if (postfix.size() > 1) {
-		return "Error too many arguments";
-	}
+	/*if (postfix.size() < 2) {
+		return "Invalid";
+	}*/
 	return postfix.top();
 }
 
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
-    stack<int> myStack;
-    vector<string> token;
+	stack<int> myStack;
+	vector<string> token;
 	stringstream zz;
 	int z;
 	int y;
 	int x;
-    token = parseTokens(postfixExpression);
-    for (int i = 0; i != token.size(); i++){
-        if (isdigit(postfixExpression[i]) == true){
-            stringstream transfer(token[i]);
-            transfer >> x;
-            myStack.push(x);
-        } else {
-            y = myStack.top();
-            myStack.pop();
+	token = parseTokens(postfixExpression);
+	for (int i = 0; i != token.size(); i++) {
+		if (isdigit(postfixExpression[i]) == true) {
+			stringstream transfer(token[i]);
+			transfer >> x;
+			myStack.push(x);
+		}
+		else {
+			y = myStack.top();
+			myStack.pop();
 			z = myStack.top();
 			if (token.at(i) == "+") {
-				myStack.push( z + y);
+				myStack.push(z + y);
 				myStack.pop();
 			}
 			else if (token.at(i) == "-") {
@@ -112,13 +118,14 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 				myStack.push(z % y);
 				myStack.pop();
 			}
+
             //cout << z << endl;
         }
     }
 	zz << z;
 	string str;
 	zz >> str;
-    return str;
+	return str;
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
@@ -138,7 +145,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			postfix = postfix + theStack.top() + " ";
 			theStack.pop();
 		}
-		if (isdigit(strings.at(0)[0]) != true) { 
+		if (isdigit(strings.at(0)[0]) != true) {
 			if (GetHierarchy(strings.at(0)) == 1) {
 				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0) {
 					theStack.push(strings.at(0));
@@ -152,11 +159,11 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			else if (GetHierarchy(strings.at(0)) == 2) {
 				if (GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1 || theStack.size() == 0) {
 					theStack.push(strings.at(0));
-						strings.erase(strings.begin());
+					strings.erase(strings.begin());
 				}
 				else {
 					postfix = postfix + strings.at(0) + " ";
-						strings.erase(strings.begin());
+					strings.erase(strings.begin());
 				}
 			}
 			else if (GetHierarchy(strings.at(0)) == 3) {
@@ -192,40 +199,40 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 }
 
 int ExpressionManager::GetHierarchy(string toCheck) {
-    if (toCheck == ")" || toCheck == "]" || toCheck == "}") {
-        return 3;
-    }
-    else if (toCheck == "*" || toCheck == "/" || toCheck == "%") {
-        return 2;
-    }
-    else if (toCheck == "+" || toCheck == "-") {
-        return 1;
-    }
-    else if (toCheck == "(" || toCheck == "[" || toCheck == "{") {
-        return 0;;
-    }
-    else {
-        return -1;
-    }
-    return -99;
+	if (toCheck == ")" || toCheck == "]" || toCheck == "}") {
+		return 3;
+	}
+	else if (toCheck == "*" || toCheck == "/" || toCheck == "%") {
+		return 2;
+	}
+	else if (toCheck == "+" || toCheck == "-") {
+		return 1;
+	}
+	else if (toCheck == "(" || toCheck == "[" || toCheck == "{") {
+		return 0;;
+	}
+	else {
+		return -1;
+	}
+	return -99;
 }
 
 /*string ExpressionManager::infixToPostfix(string infixExpression) {
-    /*stack<char> myStack;
-    //cin >> (myChar, expression);
-    for (int i = 0; i < infixExpression.length(); i++) {
-        while (isdigit(infixExpression[i]) == true) {
-            cout << infixExpression[i];
-            i++;
-        }
-        cout << " ";
-        if (isdigit(infixExpression[i] == false)) {
-            myStack.push(infixExpression[i]);
-        }
-        cout << myStack.top() << " ";
+	/*stack<char> myStack;
+	//cin >> (myChar, expression);
+	for (int i = 0; i < infixExpression.length(); i++) {
+		while (isdigit(infixExpression[i]) == true) {
+			cout << infixExpression[i];
+			i++;
+		}
+		cout << " ";
+		if (isdigit(infixExpression[i] == false)) {
+			myStack.push(infixExpression[i]);
+		}
+		cout << myStack.top() << " ";
 
 
 
-    return std::string();
+	return std::string();
 }*/
 
