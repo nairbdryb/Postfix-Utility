@@ -79,9 +79,9 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
     stack<int> myStack;
     vector<string> token;
 	stringstream zz;
-	int z;
-	int y;
-	int x;
+	int z = 0;
+	int y = 0;
+	int x = 0;
     token = parseTokens(postfixExpression);
     for (int i = 0; i != token.size(); i++){
         if (isdigit(token.at(i)[0]) == true){
@@ -107,12 +107,16 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 				myStack.pop();
 			}
 			else if (token.at(i) == "/") {
-				myStack.push(z / y);
-				myStack.pop();
+				if (y != 0) {
+					myStack.push(z / y);
+					myStack.pop();
+				}
 			}
 			else if (token.at(i) == "%") {
-				myStack.push(z % y);
-				myStack.pop();
+				if (y != 0) {
+					myStack.push(z % y);
+					myStack.pop();
+				}
 			}
             //cout << z << endl;
         }
@@ -136,9 +140,11 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			postfix = postfix + strings.at(0) + " ";
 			strings.erase(strings.begin());
 		}
-		while (GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
-			postfix = postfix + theStack.top() + " ";
-			theStack.pop();
+		if (theStack.size() >= 0) {
+			while (GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
+				postfix = postfix + theStack.top() + " ";
+				theStack.pop();
+			}
 		}
 		if (isdigit(strings.at(0)[0]) != true) { 
 			if (GetHierarchy(strings.at(0)) == 1) {
