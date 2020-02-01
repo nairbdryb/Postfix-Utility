@@ -140,7 +140,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			postfix = postfix + strings.at(0) + " ";
 			strings.erase(strings.begin());
 		}
-		if (theStack.size() >= 0) {
+		if (theStack.size() > 0) {
 			while (GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
 				postfix = postfix + theStack.top() + " ";
 				theStack.pop();
@@ -158,7 +158,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 				}
 			}
 			else if (GetHierarchy(strings.at(0)) == 2) {
-				if (GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1 || theStack.size() == 0) {
+				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1) {
 					theStack.push(strings.at(0));
 						strings.erase(strings.begin());
 				}
@@ -191,8 +191,10 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 				}
 			}
 			else {
-				theStack.push(strings.at(0));
-				strings.erase(strings.begin());
+				if (theStack.size() > 0) {
+					theStack.push(strings.at(0));
+					strings.erase(strings.begin());
+				}
 			}
 		}
 	}
