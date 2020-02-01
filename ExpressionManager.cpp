@@ -170,10 +170,11 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			}
 			else if (GetHierarchy(strings.at(0)) == 3) {
 				if (strings.at(0) == ")") {
-					while (theStack.top() != "(" %% theStack.size() > 0) {
+					while (theStack.size() > 0 && theStack.top() != "(" ) {
 						postfix = postfix + theStack.top() + "";
 						theStack.pop();
 					}
+					if (theStack.size() > 0) 
 					theStack.pop();
 				}
 				else if (strings.at(0) == "]") {
