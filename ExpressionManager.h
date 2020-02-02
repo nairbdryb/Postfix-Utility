@@ -57,6 +57,8 @@ public:
     vector<string> parseTokens(string expression);
 
     int GetHierarchy(string toCheck);
+
+    bool infixToPostfixCheck(infixExpression);
 private:
   //  stack<char> myStack();
 

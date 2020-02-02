@@ -11,8 +11,14 @@ postfixEvaluate + 3 4 - 1
 postfixEvaluate 4 5 + 6 0 * /
   4
 postfixEvaluate } 78 97 + 6 / 5 +
-  78
+  Invalid
 postfixToInfix 3 + 3 /
-  (3/3)
+  Invalid Expression
 postfixToInfix 3 3 4 +
-  Error too many arguments
+  Invalid
+postfixToInfix *
+  Invalid Expression
+postfixToInfix + 3 3
+  Invalid Expression
+postfixToInfix 3 3
+  Invalid
