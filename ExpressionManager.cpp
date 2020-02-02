@@ -54,7 +54,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 		if (tokens.at(i) == "+" || tokens.at(i) == "-"
 			|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
 			if (postfix.size() < 2) {
-				cout << "Invalid Expression" << endl;
+				//return "Invalid Expression";
 			}
 			else {
 				tempOperator = tokens.at(i);
