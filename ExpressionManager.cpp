@@ -52,7 +52,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 
 	for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
 		if (tokens.at(i) == "+" || tokens.at(i) == "-"
-			|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") { /* if the char is an operand it is added to the top of the stack*/
+			|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
 			if (postfix.size() < 2) {
 				cout << "Invalid Expression" << endl;
 			}
