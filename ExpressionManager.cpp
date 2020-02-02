@@ -132,8 +132,8 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 	stringstream ss;
 	stack<string> theStack;
 	string postfix = "";
-	int tempA = NULL;
-	int tempB = NULL;
+	//int tempA = -9999999;
+	//int tempB = -9999999;
 
 	strings = parseTokens(infixExpression);
 	while (strings.size() > 0) {
