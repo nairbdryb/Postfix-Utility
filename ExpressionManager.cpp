@@ -87,7 +87,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 	int x = 0;
 
 	if (isBalanced(postfixExpression) == false) {
-		return "Invalid";
+		return "invalid";
 	}
 	token = parseTokens(postfixExpression);
 	for (int i = 0; i != token.size(); i++) {
@@ -102,6 +102,11 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 				myStack.pop();
 				z = myStack.top();
 			}
+
+			if (myStack.size() < 2) {
+				return "invalid";
+			} // this one checks to see if it is less than 2 numbers before the operators
+
 			if (token.at(i) == "+") {
 				myStack.push(z + y);
 				myStack.pop();
