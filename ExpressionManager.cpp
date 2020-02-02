@@ -51,13 +51,13 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 	stack<string> postfix; 
 
 	if (isBalanced(postfixExpression) == false) {
-		return "Invalid";
+		return "invalid";
 	}
 	for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
 		if (tokens.at(i) == "+" || tokens.at(i) == "-"
 			|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
 			if (postfix.size() < 2) {
-				return "Invalid Expression";
+				return "invalid";
 			}
 			else {
 				tempOperator = tokens.at(i);
@@ -73,7 +73,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 		}
 	}
 	if (postfix.size() > 1) {
-		return "Invalid";
+		return "invalid";
 	}
 	return postfix.top();
 }
@@ -87,7 +87,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 	int x = 0;
 
 	if (isBalanced(postfixExpression) == false) {
-		return "Invalid";
+		return "invalid";
 	}
     token = parseTokens(postfixExpression);
     for (int i = 0; i != token.size(); i++){
@@ -96,11 +96,16 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             transfer >> x;
             myStack.push(x);
         } else {
-			if (myStack.size() != 0) {
+			if (myStack.size() != 0 ) { 
 				y = myStack.top();
 				myStack.pop();
 				z = myStack.top();
 			}
+
+			if (myStack.size() < 2) {
+				return "invalid";
+			} // this one checks to see if it is less than 2 numbers before the operators
+
 			if (token.at(i) == "+") {
 				myStack.push( z + y);
 				myStack.pop();
