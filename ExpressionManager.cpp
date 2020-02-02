@@ -136,8 +136,8 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 	int tempB = NULL;
 
 	strings = parseTokens(infixExpression);
-	while (strings.size() >= 0) {
-		cout << "run" << endl;
+	while (strings.size() > 0) {
+		if (strings.size() > 0) 
 		ss << strings.at(0);
 		if (isdigit(strings.at(0)[0])) {
 			postfix = postfix + strings.at(0) + " ";
@@ -176,7 +176,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			else if (GetHierarchy(strings.at(0)) == 2) {
 				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1) {
 					theStack.push(strings.at(0));
-						strings.erase(strings.begin());
+					strings.erase(strings.begin());
 				}
 				else {
 					postfix = postfix + strings.at(0) + " ";
@@ -186,22 +186,23 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			else if (GetHierarchy(strings.at(0)) == 3) {
 				if (strings.at(0) == ")") {
 					while (theStack.size() > 0 && theStack.top() != "(" ) {
-						postfix = postfix + theStack.top() + "";
+						postfix = postfix + theStack.top() + " ";
 						theStack.pop();
 					}
 					if (theStack.size() > 0) 
 					theStack.pop();
+					strings.erase(strings.begin());
 				}
 				else if (strings.at(0) == "]") {
 					while (theStack.top() != "[") {
-						postfix = postfix + theStack.top() + "";
+						postfix = postfix + theStack.top() + " ";
 						theStack.pop();
 					}
 					theStack.pop();
 				}
 				else { //(strings.at(0) == "}")
 					while (theStack.top() != "{") {
-						postfix = postfix + theStack.top() + "";
+						postfix = postfix + theStack.top() + " ";
 						theStack.pop();
 					}
 					theStack.pop();
@@ -216,6 +217,12 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 		}
 		else {
 			cout << "infixtopostfix error" << endl;
+		}
+	}
+	if (strings.size() == 0) {
+		while (theStack.size() > 0) {
+			postfix = postfix + theStack.top() + " ";
+			theStack.pop();
 		}
 	}
 	return postfix;
