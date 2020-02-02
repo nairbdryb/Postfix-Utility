@@ -267,7 +267,7 @@ int ExpressionManager::GetHierarchy(string toCheck) {
     return -99;
 }
 
-bool ExpressionManager::infixToPostfixCheck(infixExpression) {
+bool ExpressionManager::infixToPostfixCheck(string infixExpression) {
 
 
 
