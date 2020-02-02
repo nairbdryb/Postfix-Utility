@@ -50,6 +50,9 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 	string tempOperator;
 	stack<string> postfix; 
 
+	if (isBalanced(postfixExpression) == false) {
+		return "Invalid";
+	}
 	for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
 		if (tokens.at(i) == "+" || tokens.at(i) == "-"
 			|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
@@ -82,6 +85,10 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 	int z = 0;
 	int y = 0;
 	int x = 0;
+
+	if (isBalanced(postfixExpression) == false) {
+		return "Invalid";
+	}
     token = parseTokens(postfixExpression);
     for (int i = 0; i != token.size(); i++){
         if (isdigit(token.at(i)[0]) == true){
@@ -135,6 +142,9 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 	//int tempA = -9999999;
 	//int tempB = -9999999;
 
+	if (isBalanced(infixExpression) == false) {
+		return "Invalid";
+	}
 	strings = parseTokens(infixExpression);
 	while (strings.size() > 0) {
 		if (strings.size() > 0) 
