@@ -54,7 +54,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 		if (tokens.at(i) == "+" || tokens.at(i) == "-"
 			|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
 			if (postfix.size() < 2) {
-				//return "Invalid Expression";
+				return "Invalid Expression";
 			}
 			else {
 				tempOperator = tokens.at(i);
@@ -70,7 +70,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 		}
 	}
 	if (postfix.size() > 1) {
-		return "Error too many arguments";
+		return "Invalid";
 	}
 	return postfix.top();
 }
