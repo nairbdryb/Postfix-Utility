@@ -18,6 +18,7 @@ vector<string> ExpressionManager::parseTokens(string expression) {
     }
     return tokens;
 }
+
 bool ExpressionManager::isBalanced(string expression) {
     stack<char> myStack;
     //cin >> (myChar, expression);
@@ -43,12 +44,13 @@ bool ExpressionManager::isBalanced(string expression) {
         return true;
     } else return false;                                                                                                     
 }
+
 string ExpressionManager::postfixToInfix(string postfixExpression) {
-	vector<string> tokens = parseTokens(postfixExpression);
-string tempString;
-string tempNum;
-string tempOperator;
-stack<string> postfix;
+    vector<string> tokens = parseTokens(postfixExpression);
+    string tempString;
+    string tempNum;
+    string tempOperator;
+    stack<string> postfix;
 
 if (isBalanced(postfixExpression) == false) {
 	return "Invalid";
@@ -82,65 +84,65 @@ return postfix.top();
 }
 
 string ExpressionManager::postfixEvaluate(string postfixExpression) {
-	stack<int> myStack;
-	vector<string> token;
-	stringstream zz;
-	int z = 0;
-	int y = 0;
-	int x = 0;
+    stack<int> myStack;
+    vector<string> token;
+    stringstream zz;
+    int z = 0;
+    int y = 0;
+    int x = 0;
 
-	if (isBalanced(postfixExpression) == false) {
-		return "invalid";
-	}
-	token = parseTokens(postfixExpression);
-	for (int i = 0; i != token.size(); i++) {
-		if (isdigit(token.at(i)[0]) == true) {
-			stringstream transfer(token[i]);
-			transfer >> x;
-			myStack.push(x);
-		}
-		else {
-			if (myStack.size() != 0) {
-				y = myStack.top();
-				myStack.pop();
-				z = myStack.top();
-			}
+    if (isBalanced(postfixExpression) == false) {
+        return "Invalid, ya nerd";
+    }
+    token = parseTokens(postfixExpression);
+    for (int i = 0; i != token.size(); i++) {
+        if (isdigit(token.at(i)[0]) == true) {
+            stringstream transfer(token[i]);
+            transfer >> x;
+            myStack.push(x);
+        }
+        else {
+            if (myStack.size() != 0) {
+                y = myStack.top();
+                myStack.pop();
+                z = myStack.top();
+            }
 
-			if (myStack.size() < 2) {
-				return "invalid";
-			} // this one checks to see if it is less than 2 numbers before the operators
+            if (myStack.size() < 2) {
+                return "invalid. Too few.";
+            } // this one checks to see if it is less than 2 numbers before the operators
 
-			if (token.at(i) == "+") {
-				myStack.push(z + y);
-				myStack.pop();
-			}
-			else if (token.at(i) == "-") {
-				myStack.push(z - y);
-				myStack.pop();
-			}
-			else if (token.at(i) == "*") {
-				myStack.push(z * y);
-				myStack.pop();
-			}
-			else if (token.at(i) == "/") {
-				if (y != 0) {
-					myStack.push(z / y);
-					myStack.pop();
-				}
-			}
-			else if (token.at(i) == "%") {
-				if (y != 0) {
-					myStack.push(z % y);
-					myStack.pop();
-				}
-			}
-			//cout << z << endl;
-		}
-	}
-	zz << z;
-	string str;
-	zz >> str;
-	return str;
+            if (token.at(i) == "+") {
+                myStack.push(z + y);
+                myStack.pop();
+            }
+            else if (token.at(i) == "-") {
+                myStack.push(z - y);
+                myStack.pop();
+            }
+            else if (token.at(i) == "*") {
+                myStack.push(z * y);
+                myStack.pop();
+            }
+            else if (token.at(i) == "/") {
+                if (y != 0) {
+                    myStack.push(z / y);
+                    myStack.pop();
+                }
+            }
+            else if (token.at(i) == "%") {
+                if (y != 0) {
+                    myStack.push(z % y);
+                    myStack.pop();
+                }
+            }
+            //cout << z << endl;
+        }
+    }
+    zz << z;
+    string str;
+    zz >> str;
+    return str;
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
@@ -164,8 +166,8 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 	}
 	strings = parseTokens(infixExpression);
 	while (strings.size() > 0) {
-		if (strings.size() > 0) 
-		ss << strings.at(0);
+		if (strings.size() > 0)
+			ss << strings.at(0);
 		if (isdigit(strings.at(0)[0])) {
 			postfix = postfix + strings.at(0) + " ";
 			strings.erase(strings.begin());
@@ -176,7 +178,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 				theStack.pop();
 			}
 		}
-		else if (isdigit(strings.at(0)[0]) != true) { 
+		else if (isdigit(strings.at(0)[0]) != true) {
 			if (GetHierarchy(strings.at(0)) == 1) {
 				if (theStack.size() > 0) {
 					while (theStack.size() > 0 && GetHierarchy(theStack.top()) >= GetHierarchy(strings.at(0))) {
@@ -207,17 +209,17 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 				}
 				else {
 					postfix = postfix + strings.at(0) + " ";
-						strings.erase(strings.begin());
+					strings.erase(strings.begin());
 				}
 			}
 			else if (GetHierarchy(strings.at(0)) == 3) {
 				if (strings.at(0) == ")") {
-					while (theStack.size() > 0 && theStack.top() != "(" ) {
+					while (theStack.size() > 0 && theStack.top() != "(") {
 						postfix = postfix + theStack.top() + " ";
 						theStack.pop();
 					}
-					if (theStack.size() > 0) 
-					theStack.pop();
+					if (theStack.size() > 0)
+						theStack.pop();
 					strings.erase(strings.begin());
 				}
 				else if (strings.at(0) == "]") {
@@ -275,8 +277,22 @@ int ExpressionManager::GetHierarchy(string toCheck) {
 }
 
 bool ExpressionManager::infixToPostfixCheck(string infixExpression) {
+    int opOne;
+    int opTwo;
+    vector<string> expression = parseTokens(infixExpression);
 
 
+    for (int i = 0; i < expression.size(); i++) {
+        int spacing = 1;
+        if (GetHierarchy(expression[i]) == 1 || GetHierarchy(expression[i]) == 2){
+            while (GetHierarchy(expression[i + spacing]) == 0 || GetHierarchy(expression[i + spacing]) == 3
+             || expression[i + spacing] == ""){
+                spacing++;
+            }
+            if (GetHierarchy(expression[i+spacing]) == 1 || GetHierarchy(expression[i+spacing]) == 2)
+                return false;
 
-	return true;
+        }
+    }
+    return true;
 }
