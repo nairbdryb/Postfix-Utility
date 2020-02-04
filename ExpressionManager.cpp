@@ -190,10 +190,10 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
         }
         if (isalpha(strings.at(i)[0])) {
             return "invalid4";
-        }
+        }/*
         if (GetHierarchy(strings.at(i)) == -1) {
             return "invalid5";
-        }
+        }*/
     }
 
     if (strings.size() == 1 && GetHierarchy(strings.at(0)) != -1) {//check for single symbol

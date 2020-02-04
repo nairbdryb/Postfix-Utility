@@ -31,9 +31,9 @@ postfixToInfix 56 67 34 + - * 1
 infixToPostfix { { 2 + 4 }
   invalid 1
 infixToPostfix 2 + a
-  invalid5
+  invalid4
 infixToPostfix 3 $ 3
-  invalid5
+  3 3 $ 
 infixToPostfix 4 * ( 2 + 4 - ( 2 + )  ) - 4 / 5
   invalid2
 infixToPostfix 4 * ( 2 * + 4 - ( 2 + 2 ) ) - 4 / 5
@@ -41,8 +41,8 @@ infixToPostfix 4 * ( 2 * + 4 - ( 2 + 2 ) ) - 4 / 5
 infixToPostfix ( 3 + 5 - ( 4 + 2 ) }
   invalid 1
 infixToPostfix 3 + 4.2
-  invalid5
+  3 4.2 + 
 infixToPostfix -
   invalid
 infixToPostfix @
-  invalid5
+  @ 
