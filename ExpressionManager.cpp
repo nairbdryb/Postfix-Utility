@@ -97,7 +97,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
     int x = 0;
 
     if (isBalanced(postfixExpression) == false) {
-        return "Invalid, ya nerd";
+        return "Invalid, I am done with this code";
     }
     token = parseTokens(postfixExpression);
 
