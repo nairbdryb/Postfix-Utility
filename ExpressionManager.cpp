@@ -182,12 +182,18 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     }
     ///////////////////////////////////////////////////////////////////////////////
 
+	strings = parseTokens(infixExpression);
 	for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
 		if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
 			return "invalid";
 		}
+        if (isalpha(strings.at(i)[0])) {
+            return "invalid";
+        }
+        if (GetHierarchy(strings.at(i)) == -1) {
+            return "invalid";
+        }
 	}
-	strings = parseTokens(infixExpression);
 	while (strings.size() > 0) {
 		if (strings.size() > 0)
 			ss << strings.at(0);
@@ -195,6 +201,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			postfix = postfix + strings.at(0) + " ";
 			strings.erase(strings.begin());
 		}
+
 		else if (theStack.size() > 0 && isdigit(strings.at(0)[0] == true)) {
 			while (theStack.size() > 0 && GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
 				postfix = postfix + theStack.top() + " ";
