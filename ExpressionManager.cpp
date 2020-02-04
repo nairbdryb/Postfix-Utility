@@ -6,7 +6,6 @@
 #include <string>
 //int GetHierarchy(string toCheck);
 
-
 using namespace std;
 
 vector<string> ExpressionManager::parseTokens(string expression) {
@@ -169,6 +168,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     int opTwo;
     vector<string> expression = parseTokens(infixExpression);
 
+    if (expression.size() > 1)/////////added this check too :)
     for (int i = 0; i < expression.size(); i++) {
         int spacing = 1;
         if (GetHierarchy(expression[i]) == 1 || GetHierarchy(expression[i]) == 2) {
