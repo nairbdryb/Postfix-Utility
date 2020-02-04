@@ -29,20 +29,20 @@ postfixToInfix 4.3 2 +
 postfixToInfix 56 67 34 + - * 1
   Invalid Expression
 infixToPostfix { { 2 + 4 }
-  invalid
+  invalid 1
 infixToPostfix 2 + a
-  invalid
+  invalid5
 infixToPostfix 3 $ 3
-  invalid
+  invalid5
 infixToPostfix 4 * ( 2 + 4 - ( 2 + )  ) - 4 / 5
-  invalid
+  invalid2
 infixToPostfix 4 * ( 2 * + 4 - ( 2 + 2 ) ) - 4 / 5
-  invalid
+  invalid2
 infixToPostfix ( 3 + 5 - ( 4 + 2 ) }
-  invalid
+  invalid 1
 infixToPostfix 3 + 4.2
-  invalid
+  invalid5
 infixToPostfix -
-  - 
-infixToPostfix @
   invalid
+infixToPostfix @
+  invalid5

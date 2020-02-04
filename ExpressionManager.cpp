@@ -55,6 +55,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 if (isBalanced(postfixExpression) == false) {
     return "Invalid";
 }
+
 for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
     if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
         return "invalid";
@@ -194,6 +195,11 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
             return "invalid5";
         }
     }
+
+    if (strings.size() == 1 && GetHierarchy(strings.at(0)) != -1) {//check for single symbol
+        return "invalid";
+    }
+
     while (strings.size() > 0) {
         if (strings.size() > 0)
             ss << strings.at(0);
@@ -327,4 +333,3 @@ bool ExpressionManager::infixToPostfixCheck(string infixExpression) {
     return true;
 }
 */
-//HELLO ETHAN!!!!
