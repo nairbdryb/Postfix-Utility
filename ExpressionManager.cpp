@@ -42,7 +42,7 @@ bool ExpressionManager::isBalanced(string expression) {
     }
     if (myStack.empty()){
         return true;
-    } else return false;                                                                                                     
+    } else return false;
 }
 
 string ExpressionManager::postfixToInfix(string postfixExpression) {
@@ -53,36 +53,36 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
     stack<string> postfix;
 
 if (isBalanced(postfixExpression) == false) {
-	return "Invalid";
+    return "Invalid";
 }
 for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
-	if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
-		return "invalid";
-	}
+    if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
+        return "invalid";
+    }
     if (isalpha(tokens.at(i)[0])) {//i added this, might want to double check it
         return "invalid";
     }
 
-	if (tokens.at(i) == "+" || tokens.at(i) == "-"
-		|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
-		if (postfix.size() < 2) {
-			return "Invalid Expression";
-		}
-		else {
-			tempOperator = tokens.at(i);
-			tempNum = postfix.top();
-			postfix.pop();
-			tempString = "(" + postfix.top() + tempOperator + tempNum + ")";
-			postfix.pop();
-			postfix.push(tempString);
-		}
-	}
-	else if (isdigit(tokens.at(i)[0])) {
-		postfix.push(tokens.at(i));
-	}
+    if (tokens.at(i) == "+" || tokens.at(i) == "-"
+        || tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
+        if (postfix.size() < 2) {
+            return "Invalid Expression";
+        }
+        else {
+            tempOperator = tokens.at(i);
+            tempNum = postfix.top();
+            postfix.pop();
+            tempString = "(" + postfix.top() + tempOperator + tempNum + ")";
+            postfix.pop();
+            postfix.push(tempString);
+        }
+    }
+    else if (isdigit(tokens.at(i)[0])) {
+        postfix.push(tokens.at(i));
+    }
 }
 if (postfix.size() > 1) {
-	return "Invalid";
+    return "Invalid";
 }
 return postfix.top();
 }
@@ -150,19 +150,19 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 }
 
 string ExpressionManager::infixToPostfix(string infixExpression) {
-	vector<string> strings;
-	stringstream ss;
-	stack<string> theStack;
-	string postfix = "";
-	//int tempA = -9999999;
-	//int tempB = -9999999;
+    vector<string> strings;
+    stringstream ss;
+    stack<string> theStack;
+    string postfix = "";
+    //int tempA = -9999999;
+    //int tempB = -9999999;
 
-	if (isBalanced(infixExpression) == false) {
-		return "invalid";
-	}
-	/*if (infixToPostfixCheck(infixExpression) == false) {
-		return "invalid";
-	}*/
+    if (isBalanced(infixExpression) == false) {
+        return "invalid";
+    }
+    /*if (infixToPostfixCheck(infixExpression) == false) {
+        return "invalid";
+    }*/
     ///////////////////////////////////////////////////////////////////////////////
     int opOne;
     int opTwo;
@@ -182,109 +182,109 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     }
     ///////////////////////////////////////////////////////////////////////////////
 
-	strings = parseTokens(infixExpression);
-	for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
-		if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
-			return "invalid";
-		}
+    strings = parseTokens(infixExpression);
+    for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
+        if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
+            return "invalid";
+        }
         if (isalpha(strings.at(i)[0])) {
             return "invalid";
         }
         if (GetHierarchy(strings.at(i)) == -1) {
             return "invalid";
         }
-	}
-	while (strings.size() > 0) {
-		if (strings.size() > 0)
-			ss << strings.at(0);
-		if (isdigit(strings.at(0)[0])) {
-			postfix = postfix + strings.at(0) + " ";
-			strings.erase(strings.begin());
-		}
+    }
+    while (strings.size() > 0) {
+        if (strings.size() > 0)
+            ss << strings.at(0);
+        if (isdigit(strings.at(0)[0])) {
+            postfix = postfix + strings.at(0) + " ";
+            strings.erase(strings.begin());
+        }
 
-		else if (theStack.size() > 0 && isdigit(strings.at(0)[0] == true)) {
-			while (theStack.size() > 0 && GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
-				postfix = postfix + theStack.top() + " ";
-				theStack.pop();
-			}
-		}
-		else if (isdigit(strings.at(0)[0]) != true) {
-			if (GetHierarchy(strings.at(0)) == 1) {
-				if (theStack.size() > 0) {
-					while (theStack.size() > 0 && GetHierarchy(theStack.top()) >= GetHierarchy(strings.at(0))) {
-						postfix = postfix + theStack.top() + " ";
-						theStack.pop();
-					}
-					theStack.push(strings.at(0));
-					strings.erase(strings.begin());
-				}
-				else {
-					theStack.push(strings.at(0));
-					strings.erase(strings.begin());
-				}
-				/*
-				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0) {
-					theStack.push(strings.at(0));
-					strings.erase(strings.begin());
-				}
-				else {
-					postfix = postfix + strings.at(0) + " ";
-					strings.erase(strings.begin());
-				}*/
-			}
-			else if (GetHierarchy(strings.at(0)) == 2) {
-				if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1) {
-					theStack.push(strings.at(0));
-					strings.erase(strings.begin());
-				}
-				else {
-					postfix = postfix + strings.at(0) + " ";
-					strings.erase(strings.begin());
-				}
-			}
-			else if (GetHierarchy(strings.at(0)) == 3) {
-				if (strings.at(0) == ")") {
-					while (theStack.size() > 0 && theStack.top() != "(") {
-						postfix = postfix + theStack.top() + " ";
-						theStack.pop();
-					}
-					if (theStack.size() > 0)
-						theStack.pop();
-					strings.erase(strings.begin());
-				}
-				else if (strings.at(0) == "]") {
-					while (theStack.top() != "[") {
-						postfix = postfix + theStack.top() + " ";
-						theStack.pop();
-					}
-					theStack.pop();
-				}
-				else { //(strings.at(0) == "}")
-					while (theStack.top() != "{") {
-						postfix = postfix + theStack.top() + " ";
-						theStack.pop();
-					}
-					theStack.pop();
-				}
-			}
-			else {
-				if (/*theStack.size() > 0*/ true) {//changed to true due to infinite loop
-					theStack.push(strings.at(0));
-					strings.erase(strings.begin());
-				}
-			}
-		}
-		else {
-			cout << "infixtopostfix error" << endl;
-		}
-	}
-	if (strings.size() == 0) {
-		while (theStack.size() > 0) {
-			postfix = postfix + theStack.top() + " ";
-			theStack.pop();
-		}
-	}
-	return postfix;
+        else if (theStack.size() > 0 && isdigit(strings.at(0)[0] == true)) {
+            while (theStack.size() > 0 && GetHierarchy(strings.at(0)) <= GetHierarchy(theStack.top())) {
+                postfix = postfix + theStack.top() + " ";
+                theStack.pop();
+            }
+        }
+        else if (isdigit(strings.at(0)[0]) != true) {
+            if (GetHierarchy(strings.at(0)) == 1) {
+                if (theStack.size() > 0) {
+                    while (theStack.size() > 0 && GetHierarchy(theStack.top()) >= GetHierarchy(strings.at(0))) {
+                        postfix = postfix + theStack.top() + " ";
+                        theStack.pop();
+                    }
+                    theStack.push(strings.at(0));
+                    strings.erase(strings.begin());
+                }
+                else {
+                    theStack.push(strings.at(0));
+                    strings.erase(strings.begin());
+                }
+                /*
+                if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0) {
+                    theStack.push(strings.at(0));
+                    strings.erase(strings.begin());
+                }
+                else {
+                    postfix = postfix + strings.at(0) + " ";
+                    strings.erase(strings.begin());
+                }*/
+            }
+            else if (GetHierarchy(strings.at(0)) == 2) {
+                if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1) {
+                    theStack.push(strings.at(0));
+                    strings.erase(strings.begin());
+                }
+                else {
+                    postfix = postfix + strings.at(0) + " ";
+                    strings.erase(strings.begin());
+                }
+            }
+            else if (GetHierarchy(strings.at(0)) == 3) {
+                if (strings.at(0) == ")") {
+                    while (theStack.size() > 0 && theStack.top() != "(") {
+                        postfix = postfix + theStack.top() + " ";
+                        theStack.pop();
+                    }
+                    if (theStack.size() > 0)
+                        theStack.pop();
+                    strings.erase(strings.begin());
+                }
+                else if (strings.at(0) == "]") {
+                    while (theStack.top() != "[") {
+                        postfix = postfix + theStack.top() + " ";
+                        theStack.pop();
+                    }
+                    theStack.pop();
+                }
+                else { //(strings.at(0) == "}")
+                    while (theStack.top() != "{") {
+                        postfix = postfix + theStack.top() + " ";
+                        theStack.pop();
+                    }
+                    theStack.pop();
+                }
+            }
+            else {
+                if (/*theStack.size() > 0*/ true) {//changed to true due to infinite loop
+                    theStack.push(strings.at(0));
+                    strings.erase(strings.begin());
+                }
+            }
+        }
+        else {
+            cout << "infixtopostfix error" << endl;
+        }
+    }
+    if (strings.size() == 0) {
+        while (theStack.size() > 0) {
+            postfix = postfix + theStack.top() + " ";
+            theStack.pop();
+        }
+    }
+    return postfix;
 }
 
 int ExpressionManager::GetHierarchy(string toCheck) {
