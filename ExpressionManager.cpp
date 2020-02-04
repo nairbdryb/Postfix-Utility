@@ -51,15 +51,21 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
     string tempNum;
     string tempOperator;
     stack<string> postfix;
-
+	
+	for (int j = 0; j < postfixExpression.size(); j++) {// Decimal check, turns out . is a char :)
+		if (postfixExpression[j] == '.') {
+			return "invalid";
+		}
+	}
 if (isBalanced(postfixExpression) == false) {
     return "Invalid";
 }
 
 for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
-    if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
-        return "invalid";
-    }
+	
+		/*if (isdigit(tokens.at(i)[0]) && tokens.at(i)[1] == '.') { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
+			return "invalid";
+		}*/
     if (isalpha(tokens.at(i)[0])) {//i added this, might want to double check it
         return "invalid";
     }
@@ -189,6 +195,12 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     ///////////////////////////////////////////////////////////////////////////////
 
     strings = parseTokens(infixExpression);
+
+	for (int j = 0; j < infixExpression.size(); j++) {// Decimal check, turns out . is a char :)
+		if (infixExpression[j] == '.') {
+			return "invalid";
+		}
+	}
 //    for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
 //        if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
 //            return "invalid1";
