@@ -41,7 +41,7 @@ bool ExpressionManager::isBalanced(string expression) {
     }
     if (myStack.empty()){
         return true;
-    } else return false;
+    } else return false;                                                                                                     
 }
 string ExpressionManager::postfixToInfix(string postfixExpression) {
 	vector<string> tokens = parseTokens(postfixExpression);
@@ -54,6 +54,9 @@ if (isBalanced(postfixExpression) == false) {
 	return "Invalid";
 }
 for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
+	if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
+		return "invalid";
+	}
 	if (tokens.at(i) == "+" || tokens.at(i) == "-"
 		|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
 		if (postfix.size() < 2) {
@@ -154,7 +157,11 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 	if (infixToPostfixCheck(infixExpression) == false) {
 		return "invalid";
 	}
-
+	for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
+		if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
+			return "invalid";
+		}
+	}
 	strings = parseTokens(infixExpression);
 	while (strings.size() > 0) {
 		if (strings.size() > 0) 
