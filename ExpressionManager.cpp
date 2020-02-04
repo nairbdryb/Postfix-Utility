@@ -85,6 +85,7 @@ for (int i = 0; i < tokens.size(); i++) { // continues until the entire string i
 		postfix.push(tokens.at(i));
 	}else{
     return "invalid fool";
+    }
 }
 if (postfix.size() > 1) {
 	return "Invalid";
@@ -283,6 +284,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 		}
 		else {
             return "infixtopostfix error";
+        }
 	}
 	if (strings.size() == 0) {
 		while (theStack.size() > 0) {
