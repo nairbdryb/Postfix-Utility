@@ -99,6 +99,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
         return "Invalid, ya nerd";
     }
     token = parseTokens(postfixExpression);
+
     for (int i = 0; i != token.size(); i++) {
         if (isdigit(token.at(i)[0]) == true) {
             stringstream transfer(token[i]);
@@ -112,9 +113,11 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
                 z = myStack.top();
             }
 
+            /*
             if (myStack.size() < 2) {
                 return "invalid. Too few.";
             } // this one checks to see if it is less than 2 numbers before the operators
+            */
 
             if (token.at(i) == "+") {
                 myStack.push(z + y);
@@ -167,7 +170,9 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     int opOne;
     int opTwo;
     vector<string> expression = parseTokens(infixExpression);
-
+    if (expression.size() < 3){
+        return "Invalid. Too Little.";
+    }
     if (expression.size() > 1)/////////added this check too :)
     for (int i = 0; i < expression.size(); i++) {
         int spacing = 1;
@@ -183,17 +188,16 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     ///////////////////////////////////////////////////////////////////////////////
 
     strings = parseTokens(infixExpression);
-    for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
-        if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
-            return "invalid";
-        }
-        if (isalpha(strings.at(i)[0])) {
-            return "invalid";
-        }
-        if (GetHierarchy(strings.at(i)) == -1) {
-            return "invalid";
-        }
-    }
+//    for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
+//        if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
+//            return "invalid1";
+//        }
+//        if (isdigit(strings.at(i)[0] != true && GetHierarchy(strings.at(i)) == -1)){
+//            return "invalid3";
+//        }
+//
+//    }
+
     while (strings.size() > 0) {
         if (strings.size() > 0)
             ss << strings.at(0);
@@ -209,6 +213,9 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
             }
         }
         else if (isdigit(strings.at(0)[0]) != true) {
+                if (GetHierarchy(strings.at(0)) == -1){
+                    return "Invalid. Not numbers.";
+                }
             if (GetHierarchy(strings.at(0)) == 1) {
                 if (theStack.size() > 0) {
                     while (theStack.size() > 0 && GetHierarchy(theStack.top()) >= GetHierarchy(strings.at(0))) {
