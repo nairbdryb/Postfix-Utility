@@ -56,7 +56,7 @@ if (isBalanced(postfixExpression) == false) {
     return "Invalid";
 }
 
-for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
+for (int i = 0; i < tokens.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
 	if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
 		return "invalid3";
 	}
