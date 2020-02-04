@@ -60,6 +60,10 @@ for (int i = 0; i < tokens.size(); i++) { // continues until the entire string i
 	if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
 		return "invalid";
 	}
+    if (isalpha(tokens.at(i)[0])) {//i added this, might want to double check it
+        return "invalid";
+    }
+
 	if (tokens.at(i) == "+" || tokens.at(i) == "-"
 		|| tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
 		if (postfix.size() < 2) {
