@@ -58,7 +58,7 @@ public:
 
     int GetHierarchy(string toCheck);
 
-    bool infixToPostfixCheck(string infixExpression);
+    //bool infixToPostfixCheck(string infixExpression);
 private:
   //  stack<char> myStack();
 

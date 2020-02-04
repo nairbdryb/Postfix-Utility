@@ -6,6 +6,7 @@
 #include <string>
 //int GetHierarchy(string toCheck);
 
+
 using namespace std;
 
 vector<string> ExpressionManager::parseTokens(string expression) {
@@ -156,9 +157,27 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 	if (isBalanced(infixExpression) == false) {
 		return "invalid";
 	}
-	if (infixToPostfixCheck(infixExpression) == false) {
+	/*if (infixToPostfixCheck(infixExpression) == false) {
 		return "invalid";
-	}
+	}*/
+    ///////////////////////////////////////////////////////////////////////////////
+    int opOne;
+    int opTwo;
+    vector<string> expression = parseTokens(infixExpression);
+
+    for (int i = 0; i < expression.size(); i++) {
+        int spacing = 1;
+        if (GetHierarchy(expression[i]) == 1 || GetHierarchy(expression[i]) == 2) {
+            while (GetHierarchy(expression[i + spacing]) == 0 || GetHierarchy(expression[i + spacing]) == 3
+                || expression[i + spacing] == "") {
+                spacing++;
+            }
+            if (GetHierarchy(expression[i + spacing]) == 1 || GetHierarchy(expression[i + spacing]) == 2)
+                return "invalid";
+        }
+    }
+    ///////////////////////////////////////////////////////////////////////////////
+
 	for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
 		if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
 			return "invalid";
@@ -275,7 +294,7 @@ int ExpressionManager::GetHierarchy(string toCheck) {
     }
     return -99;
 }
-
+/*
 bool ExpressionManager::infixToPostfixCheck(string infixExpression) {
     int opOne;
     int opTwo;
@@ -296,3 +315,4 @@ bool ExpressionManager::infixToPostfixCheck(string infixExpression) {
     }
     return true;
 }
+*/
