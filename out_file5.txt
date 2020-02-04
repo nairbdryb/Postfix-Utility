@@ -13,21 +13,21 @@ postfixEvaluate 4 5 + 6 0 * /
 postfixEvaluate } 78 97 + 6 / 5 +
   Invalid, ya nerd
 postfixToInfix 3 + 3 /
-  Invalid Expression
+  invalid
 postfixToInfix 3 3 4 +
-  Invalid
+  invalid
 postfixToInfix *
   Invalid Expression
 postfixToInfix + 3 3
   Invalid Expression
 postfixToInfix 3 3
-  Invalid
+  invalid
 postfixToInfix five plus three
   invalid
 postfixToInfix 4.3 2 +
-  (4.3+2)
+  invalid
 postfixToInfix 56 67 34 + - * 1
-  Invalid Expression
+  invalid
 infixToPostfix { { 2 + 4 }
   invalid 1
 infixToPostfix 2 + a
