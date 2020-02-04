@@ -55,6 +55,10 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 if (isBalanced(postfixExpression) == false) {
 	return "Invalid";
 }
+if (tokens.size() < 3){
+    return "invalid. Too small";
+}
+    
 for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
 	if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
 		return "invalid";
@@ -72,14 +76,15 @@ for (int i = 0; i < tokens.size(); i++) { // continues until the entire string i
 			tempOperator = tokens.at(i);
 			tempNum = postfix.top();
 			postfix.pop();
-			tempString = "(" + postfix.top() + tempOperator + tempNum + ")";
+            tempString = "( " + postfix.top() + " " + tempOperator + " " + tempNum + " )";
 			postfix.pop();
 			postfix.push(tempString);
 		}
 	}
 	else if (isdigit(tokens.at(i)[0])) {
 		postfix.push(tokens.at(i));
-	}
+	}else{
+    return "invalid fool";
 }
 if (postfix.size() > 1) {
 	return "Invalid";
@@ -183,6 +188,8 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     ///////////////////////////////////////////////////////////////////////////////
 
 	strings = parseTokens(infixExpression);
+    if (strings.size() < 3){
+    return "Invalid. Too Little.";
 	for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
 		if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
 			return "invalid";
@@ -275,8 +282,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
 			}
 		}
 		else {
-			cout << "infixtopostfix error" << endl;
-		}
+            return "infixtopostfix error";
 	}
 	if (strings.size() == 0) {
 		while (theStack.size() > 0) {
