@@ -55,8 +55,14 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
 if (isBalanced(postfixExpression) == false) {
     return "Invalid";
 }
+
+for (int i = 0; i < tokens.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
+	if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
+		return "invalid3";
+	}
+}
 for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
-    if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
+    if (isdigit(tokens.at(i)[0])) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
         return "invalid";
     }
     if (isalpha(tokens.at(i)[0])) {//i added this, might want to double check it
@@ -158,7 +164,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     //int tempB = -9999999;
 
     if (isBalanced(infixExpression) == false) {
-        return "invalid";
+        return "invalid 1";
     }
     /*if (infixToPostfixCheck(infixExpression) == false) {
         return "invalid";
@@ -177,7 +183,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
                 spacing++;
             }
             if (GetHierarchy(expression[i + spacing]) == 1 || GetHierarchy(expression[i + spacing]) == 2)
-                return "invalid";
+                return "invalid2";
         }
     }
     ///////////////////////////////////////////////////////////////////////////////
@@ -185,15 +191,20 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     strings = parseTokens(infixExpression);
     for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
         if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
-            return "invalid";
+            return "invalid3";
         }
         if (isalpha(strings.at(i)[0])) {
-            return "invalid";
-        }
+            return "invalid4";
+        }/*
         if (GetHierarchy(strings.at(i)) == -1) {
-            return "invalid";
-        }
+            return "invalid5";
+        }*/
     }
+
+    if (strings.size() == 1 && GetHierarchy(strings.at(0)) != -1) {//check for single symbol
+        return "invalid";
+    }
+
     while (strings.size() > 0) {
         if (strings.size() > 0)
             ss << strings.at(0);
@@ -327,4 +338,3 @@ bool ExpressionManager::infixToPostfixCheck(string infixExpression) {
     return true;
 }
 */
-//HELLO ETHAN!!!!
