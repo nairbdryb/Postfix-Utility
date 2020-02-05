@@ -1,16 +1,16 @@
 postfixEvaluate 40 2 4 + 1 1 + - * 4 2 / 1 / - 7 %
-  invalid. Too few.
+  invalid
 postfixEvaluate 34 90 / 4 - 65 3 * /
-  invalid. Too few.
+  invalid
 postfixEvaluate 1 5 - 2 / 89 -
-  invalid. Too few.
+  invalid
 postfixEvaluate 100 50 6 10 - 10 * / /
-  invalid. Too few.
+  invalid
 postfixEvaluate 5 5 5 5 5 5 5 - - - - - -
-  invalid. Too few.
+  invalid
 postfixEvaluate 1
-  0
+  invalid
 postfixEvaluate 0 3 2 + *
-  invalid. Too few.
+  invalid
 postfixEvaluate 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 42 / + % + % / + % + % / + % + % / + % + % / + % + % / + % + % / + % + % / + % + % /
-  invalid. Too few.
+  invalid

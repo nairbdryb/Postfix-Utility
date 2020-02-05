@@ -78,7 +78,7 @@ for (int i = 0; i < tokens.size(); i++) { // continues until the entire string i
             tempOperator = tokens.at(i);
             tempNum = postfix.top();
             postfix.pop();
-            tempString = "(" + postfix.top() + tempOperator + tempNum + ")";
+            tempString = "( " + postfix.top() + " " + tempOperator + " " + tempNum + " " + ") ";
             postfix.pop();
             postfix.push(tempString);
         }
