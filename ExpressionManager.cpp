@@ -105,9 +105,6 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
     if (isBalanced(postfixExpression) == false) {
         return "Invalid, I am done with this code";
     }
-	if (isdigit(postfixExpression[0]) == false) {
-		return "invalid";
-	}
     token = parseTokens(postfixExpression);
 
     for (int i = 0; i != token.size(); i++) {
