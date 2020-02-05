@@ -59,7 +59,7 @@ for (int j = 0; j < postfixExpression.size(); j++) {// Decimal check, turns out 
 	}
 }
 if (isBalanced(postfixExpression) == false) {
-    return "Invalid";
+    return "invalid";
 }
 for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
     if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
@@ -72,7 +72,7 @@ for (int i = 0; i < tokens.size(); i++) { // continues until the entire string i
     if (tokens.at(i) == "+" || tokens.at(i) == "-"
         || tokens.at(i) == "*" || tokens.at(i) == "/" || tokens.at(i) == "%") {
         if (postfix.size() < 2) {
-            return "Invalid Expression";
+            return "invalid";
         }
         else {
             tempOperator = tokens.at(i);
@@ -88,7 +88,7 @@ for (int i = 0; i < tokens.size(); i++) { // continues until the entire string i
     }
 }
 if (postfix.size() > 1) {
-    return "Invalid";
+    return "invalid";
 }
 return postfix.top();
 }
@@ -102,11 +102,11 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
     int x = 0;
 
     if (isBalanced(postfixExpression) == false) {
-        return "Invalid, ya nerd";
+        return "invalid";
     }
     token = parseTokens(postfixExpression);
     if (token.size() < 3 || isdigit(token.at(0)[0] != true)){
-        return "invalid, Not enough.";
+        return "invalid";
     }
 
     for (int i = 0; i != token.size(); i++) {
@@ -125,7 +125,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 
             
             if (myStack.size() < 2) {
-                return "invalid. Too few.";
+                return "invalid";
             } // this one checks to see if it is less than 2 numbers before the operators
             
 
@@ -187,7 +187,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     int opTwo;
     vector<string> expression = parseTokens(infixExpression);
     if (expression.size() < 3){
-        return "Invalid. Too Little.";
+        return "invalid";
     }
     if (expression.size() > 1)/////////added this check too :)
     for (int i = 0; i < expression.size(); i++) {
@@ -230,7 +230,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
         }
         else if (isdigit(strings.at(0)[0]) != true) {
                 if (GetHierarchy(strings.at(0)) == -1){
-                    return "Invalid. Not numbers.";
+                    return "invalid";
                 }
             if (GetHierarchy(strings.at(0)) == 1) {
                 if (theStack.size() > 0) {
