@@ -78,7 +78,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
                 tempOperator = tokens.at(i);
                 tempNum = postfix.top();
                 postfix.pop();
-                tempString = "( " + postfix.top() + " " + tempOperator + " " + tempNum + " " + ") ";
+                tempString = "( " + postfix.top() + " " + tempOperator + " " + tempNum + " " + ")";
                 postfix.pop();
                 postfix.push(tempString);
             }
@@ -313,6 +313,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
             theStack.pop();
         }
     }
+    postfix.erase(postfix.begin() + (postfix.size() - 1));
     return postfix;
 }
 
