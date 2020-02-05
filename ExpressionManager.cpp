@@ -108,7 +108,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 //    if (token.size() < 3 || isdigit(token.at(0)[0] != true)){
 //        return "invalid";
 //    }
-    if (token.size() < 2 || isdigit(token.at(0)[0]) != true) {
+    if (token.size() < 2 && isdigit(token.at(0)[0]) != true) {
         return "invalid";
     } // this one checks to see if it is less than 2 numbers before the operators
     if (GetHierarchy(token[0]) != -1){
@@ -146,7 +146,7 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
             }
             else if (token.at(i) == "/") {
                 if (y == 0){
-                    return "invalllid";
+                    return "invalid";
                 }
                 if (y != 0) {
                     myStack.push(z / y);
