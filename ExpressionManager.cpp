@@ -98,6 +98,9 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
     if (isBalanced(postfixExpression) == false) {
         return "Invalid, ya nerd";
     }
+	if (isdigit(postfixExpression[0]) == false) {
+		return "invalid";
+	}
     token = parseTokens(postfixExpression);
     if (token.size() < 3 || isdigit(token.at(0)[0] != true)){
         return "invalid, Not enough.";
@@ -117,11 +120,11 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
                 myStack.pop();
             }
 
-            /*
+            
             if (myStack.size() < 2) {
                 return "invalid. Too few.";
             } // this one checks to see if it is less than 2 numbers before the operators
-            */
+            
 
             if (token.at(i) == "+") {
                 myStack.push(z + y);
