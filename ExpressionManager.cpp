@@ -52,6 +52,12 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
     string tempOperator;
     stack<string> postfix;
 
+
+for (int j = 0; j < postfixExpression.size(); j++) {// Decimal check, turns out . is a char :)
+	if (postfixExpression[j] == '.') {
+		return "invalid";
+	}
+}
 if (isBalanced(postfixExpression) == false) {
     return "Invalid";
 }
@@ -167,6 +173,12 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     if (isBalanced(infixExpression) == false) {
         return "invalid";
     }
+
+	for (int j = 0; j < infixExpression.size(); j++) {// Decimal check, turns out . is a char :)
+		if (infixExpression[j] == '.') {
+			return "invalid";
+		}
+	}
     /*if (infixToPostfixCheck(infixExpression) == false) {
         return "invalid";
     }*/
