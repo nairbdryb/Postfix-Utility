@@ -62,7 +62,7 @@ string ExpressionManager::postfixToInfix(string postfixExpression) {
         return "invalid";
     }
     for (int i = 0; i < tokens.size(); i++) { // continues until the entire string is done
-        if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
+        if (isdigit(tokens.at(i)[0]) && isdigit(tokens.at(i)[1] != true)) { 
             return "invalid";
         }
         if (isalpha(tokens.at(i)[0])) {//i added this, might want to double check it
@@ -105,9 +105,6 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
         return "invalid";
     }
     token = parseTokens(postfixExpression);
-//    if (token.size() < 3 || isdigit(token.at(0)[0] != true)){
-//        return "invalid";
-//    }
     if (token.size() < 2 && isdigit(token.at(0)[0]) != true) {
         return "invalid";
     } // this one checks to see if it is less than 2 numbers before the operators
@@ -134,15 +131,12 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
 
             if (token.at(i) == "+") {
                 myStack.push(z + y);
-                //myStack.pop();
             }
             else if (token.at(i) == "-") {
                 myStack.push(z - y);
-                //myStack.pop();
             }
             else if (token.at(i) == "*") {
                 myStack.push(z * y);
-                //myStack.pop();
             }
             else if (token.at(i) == "/") {
                 if (y == 0){
@@ -150,16 +144,13 @@ string ExpressionManager::postfixEvaluate(string postfixExpression) {
                 }
                 if (y != 0) {
                     myStack.push(z / y);
-                    //myStack.pop();
                 }
             }
             else if (token.at(i) == "%") {
                 if (y != 0) {
                     myStack.push(z % y);
-                    //myStack.pop();
                 }
             }
-            //cout << z << endl;
         }
     }
     zz << myStack.top();
@@ -173,21 +164,16 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     stringstream ss;
     stack<string> theStack;
     string postfix = "";
-    //int tempA = -9999999;
-    //int tempB = -9999999;
 
     if (isBalanced(infixExpression) == false) {
         return "invalid";
     }
 
-    for (int j = 0; j < infixExpression.size(); j++) {// Decimal check, turns out . is a char :)
+    for (int j = 0; j < infixExpression.size(); j++) {
         if (infixExpression[j] == '.') {
             return "invalid";
         }
     }
-    /*if (infixToPostfixCheck(infixExpression) == false) {
-        return "invalid";
-    }*/
     ///////////////////////////////////////////////////////////////////////////////
     int opOne;
     int opTwo;
@@ -195,7 +181,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     if (expression.size() < 3){
         return "invalid";
     }
-    if (expression.size() > 1)/////////added this check too :)
+    if (expression.size() > 1)
         for (int i = 0; i < expression.size(); i++) {
             int spacing = 1;
             if (GetHierarchy(expression[i]) == 1 || GetHierarchy(expression[i]) == 2) {
@@ -210,15 +196,6 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
     ///////////////////////////////////////////////////////////////////////////////
 
     strings = parseTokens(infixExpression);
-//    for (int i = 0; i < strings.size(); i++) { /////// BRIAN I ALSO ADDED A FOR LOOP I HOPE YOU LIKE IT :)
-//        if (isdigit(strings.at(i)[0]) && isdigit(strings.at(i)[1] != true)) { /////// BRIAN THIS IS THE FUNCTION TO TEST FOR DECIMALS
-//            return "invalid1";
-//        }
-//        if (isdigit(strings.at(i)[0] != true && GetHierarchy(strings.at(i)) == -1)){
-//            return "invalid3";
-//        }
-//
-//    }
 
     while (strings.size() > 0) {
         if (strings.size() > 0)
@@ -251,15 +228,6 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
                     theStack.push(strings.at(0));
                     strings.erase(strings.begin());
                 }
-                /*
-                if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0) {
-                    theStack.push(strings.at(0));
-                    strings.erase(strings.begin());
-                }
-                else {
-                    postfix = postfix + strings.at(0) + " ";
-                    strings.erase(strings.begin());
-                }*/
             }
             else if (GetHierarchy(strings.at(0)) == 2) {
                 if (theStack.size() == 0 || GetHierarchy(theStack.top()) == 0 || GetHierarchy(theStack.top()) == 1) {
@@ -288,7 +256,7 @@ string ExpressionManager::infixToPostfix(string infixExpression) {
                     }
                     theStack.pop();
                 }
-                else { //(strings.at(0) == "}")
+                else { 
                     while (theStack.top() != "{") {
                         postfix = postfix + theStack.top() + " ";
                         theStack.pop();
@@ -357,4 +325,4 @@ bool ExpressionManager::infixToPostfixCheck(string infixExpression) {
     return true;
 }
 */
-//HELLO ETHAN!!!!
+
